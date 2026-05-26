@@ -174,6 +174,8 @@ The following KPIs were developed:
 
 ## 1. Executive Overview
 
+![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%20Executive%20Summary-Supply%20Chain%20%26%20Operational%20%20Intelligence%20Platform%20.png)
+
 Provides a high-level view of overall business performance.
 
 ### Key Insight
@@ -188,6 +190,8 @@ Provides a high-level view of overall business performance.
 ---
 
 ## 2. Customer Analytics
+
+![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%20Customer%20Analysis%20-Supply%20Chain%20%26%20Operational%20Intelligence%20Platform%20.png)
 
 Provides insights into customer behavior and value segmentation.
 
@@ -204,6 +208,8 @@ Provides insights into customer behavior and value segmentation.
 
 ## 3. Product Analytics
 
+![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%20Product%20Analysis-Supply%20Chain%20%26%20Operational%20%20Intelligence%20Platform%20.png)
+
 Analyzes product, category, and department performance.
 
 ### Key Insight
@@ -219,6 +225,7 @@ Analyzes product, category, and department performance.
 
 ## 4. Operations & Shipping
 
+![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%20Operation%20%26%20Shipping-Supply%20Chain%20%26%20Operational%20Intelligence%20Platform%20%20.png)
 Evaluates shipping efficiency and delivery performance.
 
 ### Key Insight
@@ -297,4 +304,4 @@ The findings highlight opportunities to improve profitability through product po
 
 **Rahul Gowda A**
 
-Data Analytics | SQL | Power BI | Python | Excel
+Data Analytics | SQL | Power BI | Excel
