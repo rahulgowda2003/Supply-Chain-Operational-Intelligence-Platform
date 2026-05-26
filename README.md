@@ -174,6 +174,8 @@ The following KPIs were developed:
 
 ## 1. Executive Overview
 
+### Screenshot
+
 ![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%20Executive%20Summary-Supply%20Chain%20%26%20Operational%20%20Intelligence%20Platform%20.png)
 
 Provides a high-level view of overall business performance.
@@ -190,6 +192,8 @@ Provides a high-level view of overall business performance.
 ---
 
 ## 2. Customer Analytics
+
+### Screenshot
 
 ![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%20Customer%20Analysis%20-Supply%20Chain%20%26%20Operational%20Intelligence%20Platform%20.png)
 
@@ -208,6 +212,8 @@ Provides insights into customer behavior and value segmentation.
 
 ## 3. Product Analytics
 
+### Screenshot
+
 ![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%20Product%20Analysis-Supply%20Chain%20%26%20Operational%20%20Intelligence%20Platform%20.png)
 
 Analyzes product, category, and department performance.
@@ -224,6 +230,8 @@ Analyzes product, category, and department performance.
 ---
 
 ## 4. Operations & Shipping
+
+### Screenshot
 
 ![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%20Operation%20%26%20Shipping-Supply%20Chain%20%26%20Operational%20Intelligence%20Platform%20%20.png)
 Evaluates shipping efficiency and delivery performance.
@@ -262,6 +270,111 @@ Evaluates shipping efficiency and delivery performance.
 - Shipping delays remain the largest operational challenge.
 - Standard Class shipping offers the greatest opportunity for process improvement.
 
+  ---
+
+# Statistical Analysis
+
+To support business findings with statistical evidence, Hypothesis Testing and A/B Testing were conducted using Excel's T.TEST() function with a two-tailed test and unequal variance assumption.
+
+## 1. Hypothesis Testing
+
+### Business Question
+
+Do late deliveries affect order profitability?
+
+### Method
+
+- Statistical Test: Two-Sample T-Test
+- Significance Level (α): 0.05
+- Test Type: Two-Tailed
+- Variance Assumption: Unequal Variance
+
+### Null Hypothesis (H₀)
+
+There is no statistically significant difference in average order profitability between late deliveries and non-late deliveries.
+
+### Alternative Hypothesis (H₁)
+
+There is a statistically significant difference in average order profitability between late deliveries and non-late deliveries.
+
+### Result
+
+- p-value = **0.1125**
+- Significance Level = **0.05**
+
+### Interpretation
+
+Since the p-value is greater than 0.05, we fail to reject the null hypothesis.
+
+### Conclusion
+
+The analysis found no statistically significant impact of late deliveries on order profitability.
+
+### Screenshot
+
+![Hypothesis Testing](Snapshot%20Hypothesis%20Testing-Supply%20Chain%20%26%20Operational%20Intelligence.png)
+
+---
+
+## 2. A/B Testing
+
+### Business Question
+
+Do Standard Class and Second Class shipping methods generate different average sales?
+
+### Method
+
+- Statistical Test: Two-Sample T-Test
+- Significance Level (α): 0.05
+- Test Type: Two-Tailed
+- Variance Assumption: Unequal Variance
+
+### Group A
+
+Standard Class Shipping
+
+### Group B
+
+Second Class Shipping
+
+### Null Hypothesis (H₀)
+
+There is no statistically significant difference in average sales between Standard Class and Second Class shipping methods.
+
+### Alternative Hypothesis (H₁)
+
+There is a statistically significant difference in average sales between Standard Class and Second Class shipping methods.
+
+### Result
+
+- p-value = **0.0653**
+- Significance Level = **0.05**
+
+### Interpretation
+
+Since the p-value is greater than 0.05, we fail to reject the null hypothesis.
+
+### Conclusion
+
+The analysis found no statistically significant difference in average sales between Standard Class and Second Class shipping methods.
+
+### Screenshot
+
+![AB Testing](Snapshot%20AB%20Testing-Supply%20Chain%20%26%20Operational%20Intelligence.png)
+
+---
+
+## Statistical Findings Summary
+
+| Analysis | p-value | Decision | Conclusion |
+|-----------|----------|----------|------------|
+| Late Delivery vs Profitability | 0.1125 | Fail to Reject H₀ | No significant impact on profitability |
+| Standard Class vs Second Class Sales | 0.0653 | Fail to Reject H₀ | No significant difference in average sales |
+
+### Business Implication
+
+The statistical analysis suggests that neither delivery delays nor shipping method selection significantly influenced profitability or average sales at the 95% confidence level. This indicates that operational improvements should focus on customer experience and delivery performance rather than expecting immediate financial gains from shipping mode changes alone.
+
 ---
 
 # Project Structure
@@ -285,7 +398,17 @@ SupplyChainAnalytics/
 ├── 12_segmentation_analysis.sql
 ├── 13_part_to_whole_analysis.sql
 │
+├── Statistical Analysis/
+│   ├── Hypothesis_Testing.xlsx
+│   └── AB_Testing.xlsx
+│
 ├── Dashboard Screenshots/
+│   ├── Executive Overview.png
+│   ├── Customer Analytics.png
+│   ├── Product Analytics.png
+│   └── Operations & Shipping.png
+│
+├── Supply Chain & Operational Intelligence Platform.pbix
 │
 └── README.md
 ```
