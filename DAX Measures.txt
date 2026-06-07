@@ -1,0 +1,1429 @@
+Customer Analysis Measures
+--------------------------
+
+AOV MoM % = --AOV MoM%
+VAR currentmonth = [Average Order Value]
+var _previousmonth = CALCULATE(
+                        [Average Order Value],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+AOV YoY % = --AOV YoY%
+VAR currentmonth = [Average Order Value]
+var _previousmonth = CALCULATE(
+                        [Average Order Value],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Conditional Formatting Customer MoM % = 
+VAR currentmonth = [Total Customers]
+var _previousmonth = CALCULATE(
+                        [Total Customers],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Conditional Formatting Customer YoY % = 
+VAR currentmonth = [Total Customers]
+var _previousmonth = CALCULATE(
+                        [Total Customers],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Customer MoM% = --customers MoM%
+VAR currentmonth = [Total Customers]
+var _previousmonth = CALCULATE(
+                        [Total Customers],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Customers YoY  % = --customers YoY%
+VAR currentmonth = [Total Customers]
+var _previousmonth = CALCULATE(
+                        [Total Customers],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Discount MoM% = --disconut per customer MoM%
+VAR currentmonth = [Discount Per Customer]
+var _previousmonth = CALCULATE(
+                        [Discount Per Customer],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Discount Per Customer = 
+DIVIDE(
+    SUM('gold fact_orders_cleaned_v2'[order_item_discount]),
+    [Total Customers]
+)
+
+--
+
+Discount YoY% = --disconut per customer YoY%
+VAR currentmonth = [Discount Per Customer]
+var _previousmonth = CALCULATE(
+                        [Discount Per Customer],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Format AOV MoM % = --AOV MoM%
+VAR currentmonth = [Average Order Value]
+var _previousmonth = CALCULATE(
+                        [Average Order Value],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format AOV YoY % = --AOV YoY%
+VAR currentmonth = [Average Order Value]
+var _previousmonth = CALCULATE(
+                        [Average Order Value],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Discount Per Customer MoM% = --disconut per customer MoM%
+VAR currentmonth = [Discount Per Customer]
+var _previousmonth = CALCULATE(
+                        [Discount Per Customer],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage < 0, "Green",
+                    _percentage > 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Discount Per Customer YoY% = --disconut per customer YoY%
+VAR currentmonth = [Discount Per Customer]
+var _previousmonth = CALCULATE(
+                        [Discount Per Customer],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage < 0, "Green",
+                    _percentage > 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Profit MoM % = --Profit MoM%
+VAR currentmonth = [Profit Per Customer]
+var _previousmonth = CALCULATE(
+                        [Profit Per Customer],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0,"Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Profit YoY % = --Profit YoY%
+VAR currentmonth = [Profit Per Customer]
+var _previousmonth = CALCULATE(
+                        [Profit Per Customer],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0,"Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Revenue Per Customer MoM % = --revenue per customer MoM%
+VAR currentmonth = [Revenue Per Customer]
+var _previousmonth = CALCULATE(
+                        [Revenue Per Customer],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Revenue Per Customer YoY % = --revenue per customer YoY%
+VAR currentmonth = [Revenue Per Customer]
+var _previousmonth = CALCULATE(
+                        [Revenue Per Customer],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+MoM % = --revenue per customer MoM%
+VAR currentmonth = [Revenue Per Customer]
+var _previousmonth = CALCULATE(
+                        [Revenue Per Customer],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Profit MoM % = --Profit Per Customer MoM%
+VAR currentmonth = [Profit Per Customer]
+var _previousmonth = CALCULATE(
+                        [Profit Per Customer],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Profit YoY % = --Profit Per Customer YoY%
+VAR currentmonth = [Profit Per Customer]
+var _previousmonth = CALCULATE(
+                        [Profit Per Customer],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+YoY % = --revenue per customer YoY%
+VAR currentmonth = [Revenue Per Customer]
+var _previousmonth = CALCULATE(
+                        [Revenue Per Customer],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+
+
+Executive Overview Measures
+---------------------------
+
+
+Average Order Value = 
+DIVIDE(
+    [Total Revenue],
+    [Total Orders],
+    0
+    )
+
+--
+
+Format Profit Margin MoM % = --profit margin MoM%
+VAR currentmonth = [Profit Margin %]
+var _previousmonth = CALCULATE(
+                        [Profit Margin %],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Profit Margin YoY % = --profit margin YoY%
+VAR currentmonth = [Profit Margin %]
+var _previousmonth = CALCULATE(
+                        [Profit Margin %],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Profit_MoM% = --total profit MoM%
+VAR currentmonth = [Total Profit]
+var _previousmonth = CALCULATE(
+                        [Total Profit],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Profit_YoY% = --total profit YoY%
+VAR currentmonth = [Total Profit]
+var _previousmonth = CALCULATE(
+                        [Total Profit],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Revenue MoM % = --total revenue MoM%
+VAR currentmonth = [Total Revenue]
+var _previousmonth = CALCULATE(
+                        [Total Revenue],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Revenue YoY % = --total revenue YoY%
+VAR currentmonth = [Total Revenue]
+var _previousmonth = CALCULATE(
+                        [Total Revenue],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Late Delivery Rate % = 
+DIVIDE(
+    CALCULATE(
+        COUNTROWS('gold fact_orders_cleaned_v2'),
+        'gold fact_orders_cleaned_v2'[late_delivery_risk] = 1
+    ),
+    COUNTROWS('gold fact_orders_cleaned_v2')
+)
+
+--
+
+Late Delivery Risk % = 
+DIVIDE(
+    CALCULATE(COUNTROWS('gold fact_orders_cleaned_v2'),
+    'gold dim_shipping'[late_delivery_risk] = 1),
+    COUNTROWS('gold fact_orders_cleaned_v2'),
+    0
+)
+
+--
+
+Late Orders = 
+CALCULATE(
+    COUNTROWS('gold fact_orders_cleaned_v2'),
+    'gold fact_orders_cleaned_v2'[late_delivery_risk] = 1
+)
+
+--
+
+Previous Year Discount = CALCULATE(
+                        SUM('gold fact_orders_cleaned_v2'[order_item_discount]),
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+
+--
+
+Previous Year Profit = CALCULATE(
+                        SUM('gold fact_orders_cleaned_v2'[order_profit_per_order]),
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+
+--
+
+Previous Year Revenue = CALCULATE(
+                        SUM('gold fact_orders_cleaned_v2'[sales]),
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+
+--
+
+Profit Margin % = 
+DIVIDE(
+    [Total Products],
+    [Total Revenue],
+    0
+    )*10000
+
+--
+
+Profit Margin MoM % = --profit margin MoM%
+VAR currentmonth = [Profit Margin %]
+var _previousmonth = CALCULATE(
+                        [Profit Margin %],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Profit Margin YoY % = --profit margin YoY%
+VAR currentmonth = [Profit Margin %]
+var _previousmonth = CALCULATE(
+                        [Profit Margin %],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Profit Per Customer = 
+DIVIDE(
+    [Total Profit],
+    [Total Customers]
+)
+
+--
+
+Profit_MoM% = --total profit MoM%
+VAR currentmonth = [Total Profit]
+var _previousmonth = CALCULATE(
+                        [Total Profit],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Profit_YoY% = --total profit YoY%
+VAR currentmonth = [Total Profit]
+var _previousmonth = CALCULATE(
+                        [Total Profit],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Revenue MoM % = --total revenue MoM%
+VAR currentmonth = [Total Revenue]
+var _previousmonth = CALCULATE(
+                        [Total Revenue],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Revenue Per Customer = 
+DIVIDE(
+    [Total Revenue],
+    [Total Customers]
+)
+
+--
+
+Revenue YoY % = --total revenue YoY%
+VAR currentmonth = [Total Revenue]
+var _previousmonth = CALCULATE(
+                        [Total Revenue],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Total Customers = 
+DISTINCTCOUNT('gold dim_customers'[customer_id])
+
+--
+
+Total Orders = 
+DISTINCTCOUNT('gold fact_orders_cleaned_v2'[order_id])
+
+--
+
+Total Products = 
+DISTINCTCOUNT('gold fact_orders_cleaned_v2'[product_card_id])
+
+--
+
+Total Profit = 
+SUM('gold fact_orders_cleaned_v2'[order_profit_per_order])
+
+--
+
+Total Revenue = 
+SUM('gold fact_orders_cleaned_v2'[sales])
+
+--
+
+YoY Discount % = DIVIDE(
+            SUM('gold fact_orders_cleaned_v2'[order_item_discount]) - [Previous Year Discount],
+            [Previous Year Discount]
+)
+
+--
+
+YoY Profit % = DIVIDE(
+            SUM('gold fact_orders_cleaned_v2'[order_profit_per_order]) - [Previous Year Profit],
+            [Previous Year Profit]
+)
+
+--
+
+YoY Revenue % = DIVIDE(
+            SUM('gold fact_orders_cleaned_v2'[sales]) - [Previous Year Revenue],
+            [Previous Year Revenue]
+)
+
+
+
+
+Operations & Shipping Measures
+------------------------------
+
+
+
+Average Shipping Days = 
+AVERAGEX(
+    FILTER(
+        'gold fact_orders_cleaned_v2',
+        'gold fact_orders_cleaned_v2'[date_quality_flag] = "valid"
+    ),
+    DATEDIFF(
+        'gold fact_orders_cleaned_v2'[order_date].[Date],
+        'gold fact_orders_cleaned_v2'[shipping_date].[Date],
+        DAY
+    )
+)
+
+--
+
+Delivered Quantity = CALCULATE(
+                            SUM('gold fact_orders_cleaned_v2'[order_item_quantity]),
+                            'gold fact_orders_cleaned_v2'[order_status] = "COMPLETE",
+                            'gold fact_orders_cleaned_v2'[delivery_status] <> "Cancelled",
+                            'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+                            )
+
+--
+
+Delivery Fulfillment % = 
+DIVIDE(
+    [Delivered Quantity],
+    [Ordered Quantity]
+)
+
+--
+
+Format Fulfillment MoM% = --delivery fulfillment rate MoM%
+VAR currentmonth = [Delivery Fulfillment %]
+var _previousmonth = CALCULATE(
+                        [Delivery Fulfillment %],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+
+--
+
+
+Format Fulfillment YoY% = --delivery fulfillment rate YoY%
+VAR currentmonth = [Delivery Fulfillment %]
+var _previousmonth = CALCULATE(
+                        [Delivery Fulfillment %],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format late delivery MoM% = --late delivery MoM%
+VAR currentmonth = [Late Delivery Rate %]
+var _previousmonth = CALCULATE(
+                        [Late Delivery Rate %],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "red",
+                    _percentage < 0, "green",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format late delivery YoY% = --late delivery YoY%
+VAR currentmonth = [Late Delivery Rate %]
+var _previousmonth = CALCULATE(
+                        [Late Delivery Rate %],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Red",
+                    _percentage < 0, "Green",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Orders MoM% = --Orders MoM%
+VAR currentmonth = [Total_Orders]
+var _previousmonth = CALCULATE(
+                        [Total_Orders],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Orders YoY% = --Orders YoY%
+VAR currentmonth = [Total_Orders]
+var _previousmonth = CALCULATE(
+                        [Total_Orders],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Fulfillment MoM% = --delivery fulfillment rate MoM%
+VAR currentmonth = [Delivery Fulfillment %]
+var _previousmonth = CALCULATE(
+                        [Delivery Fulfillment %],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Fulfillment YoY% = --delivery fulfillment rate YoY%
+VAR currentmonth = [Delivery Fulfillment %]
+var _previousmonth = CALCULATE(
+                        [Delivery Fulfillment %],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Max Shipping Days = 
+MAXX(
+    FILTER(
+        'gold fact_orders_cleaned_v2',
+        'gold fact_orders_cleaned_v2'[date_quality_flag] = "valid"
+    ),
+    DATEDIFF(
+        'gold fact_orders_cleaned_v2'[order_date].[Date],
+        'gold fact_orders_cleaned_v2'[shipping_date].[Date],
+        DAY
+    )
+)
+
+--
+
+Min Shipping Days = 
+MINX(
+    FILTER(
+        'gold fact_orders_cleaned_v2',
+        'gold fact_orders_cleaned_v2'[date_quality_flag] = "valid"
+    ),
+    DATEDIFF(
+        'gold fact_orders_cleaned_v2'[order_date].[Date],
+        'gold fact_orders_cleaned_v2'[shipping_date].[Date],
+        DAY
+    )
+)MoM% = --late delivery MoM%
+VAR currentmonth = [Late Delivery Rate %]
+var _previousmonth = CALCULATE(
+                        [Late Delivery Rate %],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Ordered Quantity = SUM('gold fact_orders_cleaned_v2'[order_item_quantity])
+
+--
+
+Orders MoM% = --Orders MoM%
+VAR currentmonth = [Total_Orders]
+var _previousmonth = CALCULATE(
+                        [Total_Orders],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Orders YoY% = --Orders YoY%
+VAR currentmonth = [Total_Orders]
+var _previousmonth = CALCULATE(
+                        [Total_Orders],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+
+Total_Orders = 
+DISTINCTCOUNT('gold fact_orders_cleaned_v2'[order_id])
+
+--
+
+YoY% = --late delivery YoY%
+VAR currentmonth = [Late Delivery Rate %]
+var _previousmonth = CALCULATE(
+                        [Late Delivery Rate %],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+
+
+
+Product Analysis Measures
+-------------------------
+
+
+
+Average Product Discount = 
+DIVIDE(
+    SUM('gold fact_orders_cleaned_v2'[order_item_discount]),
+    [Total_Products]
+)
+
+--
+
+Average Product Profit = 
+DIVIDE(
+    [Total Profit],
+    [Total Products]
+)
+
+--
+
+Discount MoM % = --avg product discount MoM%
+VAR currentmonth = [Average Product Discount]
+var _previousmonth = CALCULATE(
+                        [Average Product Discount],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Discount YoY % = --avg product discount YoY%
+VAR currentmonth = [Average Product Discount]
+var _previousmonth = CALCULATE(
+                        [Average Product Discount],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Format Avg Profit MoM% = --avg product profit MoM%
+VAR currentmonth = [Average Product Profit]
+var _previousmonth = CALCULATE(
+                        [Average Product Profit],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+
+Format Avg Profit YoY% = --avg product profit YoY%
+VAR currentmonth = [Average Product Profit]
+var _previousmonth = CALCULATE(
+                        [Average Product Profit],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Discount MoM % = --avg product discount MoM%
+VAR currentmonth = [Average Product Discount]
+var _previousmonth = CALCULATE(
+                        [Average Product Discount],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage < 0, "Green",
+                    _percentage > 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Discount YoY % = --avg product discount YoY%
+VAR currentmonth = [Average Product Discount]
+var _previousmonth = CALCULATE(
+                        [Average Product Discount],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage < 0, "Green",
+                    _percentage > 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Products MoM% = --products MoM%
+VAR currentmonth = [Total_Products]
+var _previousmonth = CALCULATE(
+                        [Total_Products],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Products YoY% = --products YoY%
+VAR currentmonth = [Total_Products]
+var _previousmonth = CALCULATE(
+                        [Total_Products],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Revenue MoM% = --revenue per products MoM%
+VAR currentmonth = [Revenue Per Product]
+var _previousmonth = CALCULATE(
+                        [Revenue Per Product],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Format Revenue YoY% = --revenue per products YoY%
+VAR currentmonth = [Revenue Per Product]
+var _previousmonth = CALCULATE(
+                        [Revenue Per Product],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, "Green",
+                    _percentage < 0, "Red",
+                    "Grey"
+)
+RETURN
+_format
+
+--
+
+Products MoM% = --products MoM%
+VAR currentmonth = [Total_Products]
+var _previousmonth = CALCULATE(
+                        [Total_Products],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Products YoY% = --products YoY%
+VAR currentmonth = [Total_Products]
+var _previousmonth = CALCULATE(
+                        [Total_Products],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Profit MoM% = --avg profit per products MoM%
+VAR currentmonth = [Average Product Profit]
+var _previousmonth = CALCULATE(
+                        [Average Product Profit],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+
+--
+
+
+Profit YoY% = --avg profit per products YoY%
+VAR currentmonth = [Average Product Profit]
+var _previousmonth = CALCULATE(
+                        [Average Product Profit],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Revenue MoM% = --revenue per products MoM%
+VAR currentmonth = [Revenue Per Product]
+var _previousmonth = CALCULATE(
+                        [Revenue Per Product],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, MONTH),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Revenue Per Product = 
+DIVIDE(
+    [Total Revenue],
+    [Total Products]
+)
+
+--
+
+Revenue YoY% = --revenue per products YoY%
+VAR currentmonth = [Revenue Per Product]
+var _previousmonth = CALCULATE(
+                        [Revenue Per Product],
+                        DATEADD('gold fact_orders_cleaned_v2'[order_date].[Date], -1, YEAR),
+                        'gold fact_orders_cleaned_v2'[date_quality_flag] = "Valid"
+)
+VAR _percentage = DIVIDE(currentmonth - _previousmonth,
+                        _previousmonth)
+VAR _format = SWITCH(
+                    TRUE(),
+                    _percentage > 0, UNICHAR(11165) & " " & FORMAT(_percentage, "0.00%"), --unichar(11165) returns up arrow
+                    _percentage < 0, UNICHAR(11167) & " " & FORMAT(_percentage, "0.00%")  --unichar(11167) returns down arrow
+)
+RETURN
+_format
+
+--
+
+Total_Products = 
+DISTINCTCOUNT('gold fact_orders_cleaned_v2'[product_card_id])
