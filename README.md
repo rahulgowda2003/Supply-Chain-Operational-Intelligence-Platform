@@ -224,8 +224,6 @@ Provides a high-level view of overall business performance.
 
 ### Key Insight
 - The business generated approximately **$37M revenue** and **$4M profit** from **65K orders**, demonstrating strong sales performance but relatively low profit margins.
-
-### Key Insight
 - Europe and Latin America are the highest-performing markets and contribute the majority of overall revenue.
 
 ### Recommendation
@@ -296,8 +294,6 @@ Analyzes product, category, and department performance.
 
 ### Key Insight
 - The Fan Shop department generates the highest revenue while the Fishing category delivers the highest profit contribution.
-
-### Key Insight
 - Multiple products were identified as loss-making products despite generating sales revenue.
 
 ### Recommendation
@@ -333,8 +329,6 @@ Evaluates shipping efficiency and delivery performance.
 
 ### Key Insight
 - More than **54% of orders** are associated with late delivery risk.
-
-### Key Insight
 - Standard Class shipping processes the highest order volume and experiences the highest number of delivery delays.
 
 ### Recommendation
