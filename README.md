@@ -2,7 +2,11 @@
 
 ## Project Overview
 
-This project focuses on analyzing supply chain, customer, product, and operational performance using SQL Server and Power BI. The objective is to transform raw transactional and operational data into actionable business insights that support strategic decision-making.
+This project delivers an end-to-end Supply Chain & Operational Intelligence solution designed to transform raw operational data into actionable business insights.
+
+Using SQL Server, Power BI, and Excel, the project analyzes sales performance, customer behavior, product profitability, and supply chain efficiency to identify revenue opportunities, operational bottlenecks, and areas for profitability improvement.
+
+The solution combines data engineering, business intelligence, and statistical analysis to support data-driven decision-making.
 
 The project follows an end-to-end analytics workflow including:
 
@@ -13,6 +17,12 @@ The project follows an end-to-end analytics workflow including:
 - KPI Development
 - Dashboard Design & Reporting
 - Business Insights & Recommendations
+
+---
+
+## Business Objective
+
+To analyze supply chain, customer, product, and shipping performance by transforming raw operational data into actionable business insights that support revenue growth, profitability improvement, and operational efficiency.
 
 ---
 
@@ -160,7 +170,9 @@ The following KPIs were developed:
 - Profit Margin %
 - Total Orders
 - Total Customers
+- Average Discount Per Customer
 - Total Products
+- Average Discount Per Product
 - Revenue Per Customer
 - Revenue Per Product
 - Average Order Value
@@ -172,13 +184,43 @@ The following KPIs were developed:
 
 # Dashboard Pages
 
-## 1. Executive Overview
+## 1. Home Page
 
 ### Screenshot
 
-![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%20Executive%20Summary-Supply%20Chain%20%26%20Operational%20%20Intelligence%20Platform%20.png)
+![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%201-%20Home.png
+)
+
+![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%202%20-%20Home.png
+)
+
+Project introduction, navigation menu, and business objective.
+
+## 2. Executive Overview
+
+### Screenshot
+
+![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%201%20-%20Executive%20Overview.png
+)
+
+![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapahot%202%20-%20Executive%20Overview.png
+)
+
 
 Provides a high-level view of overall business performance.
+
+### KPIs
+- Revenue
+- Profit
+- Profit Margin
+- YoY Growth
+- MoM Growth
+
+### Analysis
+
+- Profit by Market
+- Profit by Country
+- Year-on-Year Profit Trend
 
 ### Key Insight
 - The business generated approximately **$37M revenue** and **$4M profit** from **65K orders**, demonstrating strong sales performance but relatively low profit margins.
@@ -191,18 +233,35 @@ Provides a high-level view of overall business performance.
 
 ---
 
-## 2. Customer Analytics
+## 3. Customer Analytics
 
 ### Screenshot
 
-![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%20Customer%20Analysis%20-Supply%20Chain%20%26%20Operational%20Intelligence%20Platform%20.png)
+![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%201%20-%20Customer%20Analysis.png
+)
+
+![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%202%20-%20Customer%20Analysis.png
+)
 
 Provides insights into customer behavior and value segmentation.
 
-### Key Insight
-- The company serves more than **20K customers** with an average order value of approximately **$559**.
+### KPIs
+
+- Total Customers
+- Revenue per Customer
+- Profit per Customer
+- Average Order Value
+- Discount per Customer
+
+### Analysis
+
+- Customer Segmentation
+- Top Customer Countries
+- Customer Distribution Map
+- Top Customers by Profit
 
 ### Key Insight
+- The company serves more than **20K customers** with an average order value of approximately **$559**.
 - A small segment of high-value customers contributes a significant portion of overall profit.
 
 ### Recommendation
@@ -210,13 +269,30 @@ Provides insights into customer behavior and value segmentation.
 
 ---
 
-## 3. Product Analytics
+## 4. Product Analytics
 
 ### Screenshot
 
-![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%20Product%20Analysis-Supply%20Chain%20%26%20Operational%20%20Intelligence%20Platform%20.png)
+![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%201%20-%20Product%20Analysis.png
+)
+
+![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%202%20-%20Product%20Analysis.png
+)
 
 Analyzes product, category, and department performance.
+
+### KPIs
+
+- Total Products
+- Average Product Revenue
+- Average Product Discount
+
+### Analysis
+
+- Loss-Making Products
+- Revenue by Department
+- Top Products by Revenue
+- Top Categories by Revenue
 
 ### Key Insight
 - The Fan Shop department generates the highest revenue while the Fishing category delivers the highest profit contribution.
@@ -233,8 +309,27 @@ Analyzes product, category, and department performance.
 
 ### Screenshot
 
-![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%20Operation%20%26%20Shipping-Supply%20Chain%20%26%20Operational%20Intelligence%20Platform%20%20.png)
+![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%201%20-%20Operations%20%26%20Shipping.png
+)
+
+![Dashboard_upload](https://github.com/rahulgowda2003/Supply-Chain-Operational-Intelligence-Platform/blob/main/Snapshot%202%20-%20Operations%20%26%20Shipping.png)
+
 Evaluates shipping efficiency and delivery performance.
+
+### KPIs
+
+- Total Orders
+- Late Delivery Rate
+- Average Shipping Days
+- Delivery Fulfillment Rate
+
+### Analysis
+
+- Delivery Status Distribution
+- Orders by Shipping Mode
+- Ordered vs Delivered Quantity
+- Late Orders by Shipping Mode
+- Profit by Shipping Mode
 
 ### Key Insight
 - More than **54% of orders** are associated with late delivery risk.
@@ -247,28 +342,117 @@ Evaluates shipping efficiency and delivery performance.
 
 ---
 
-# Business Insights
+## Key Business Insights
 
-### Revenue Performance
+### Executive Overview
 
-- Europe generated the highest revenue among all markets.
-- Latin America closely followed Europe in total sales contribution.
-- Revenue remained relatively stable between 2015 and 2017.
+**Insight**
 
-### Customer Performance
+Despite generating approximately $37M in revenue, the business maintained a relatively low profit margin of 3.21%, indicating profitability challenges.
 
-- Customer value distribution indicates opportunities for upselling and retention.
-- Customer concentration is highest in the United States and major European markets.
+**Recommendation**
 
-### Product Performance
+Focus on margin optimization initiatives such as discount control, product mix optimization, and operational cost reduction.
 
-- Fishing, Cleats, and Camping & Hiking categories delivered the highest profitability.
-- Three products were identified as consistently loss-making.
+**Insight**
 
-### Operational Performance
+Europe and Latin America contributed the highest profit among all markets.
 
-- Shipping delays remain the largest operational challenge.
-- Standard Class shipping offers the greatest opportunity for process improvement.
+**Recommendation**
+
+Prioritize customer acquisition and retention initiatives in high-performing regions.
+
+**Insight**
+
+Profitability experienced a significant decline during 2018.
+
+**Recommendation**
+
+Investigate operational, pricing, and inventory factors contributing to profit erosion.
+
+---
+
+### Customer Analysis
+
+**Insight**
+
+A small group of high-value customers contributed a disproportionately large share of total profit.
+
+**Recommendation**
+
+Implement loyalty programs and targeted retention campaigns for high-value customers.
+
+**Insight**
+
+Customer concentration is highest in North America and Europe.
+
+**Recommendation**
+
+Expand marketing and fulfillment capabilities in high-performing regions.
+
+**Insight**
+
+Average profit per customer remains significantly lower than revenue per customer.
+
+**Recommendation**
+
+Improve customer profitability through cross-selling and discount optimization.
+
+---
+
+### Product Analysis
+
+**Insight**
+
+Three products consistently generated negative profit.
+
+**Recommendation**
+
+Review pricing, supplier contracts, and inventory costs for loss-making products.
+
+**Insight**
+
+The Fan Shop department generated the highest revenue contribution.
+
+**Recommendation**
+
+Increase product assortment and promotional focus within high-performing departments.
+
+**Insight**
+
+A small number of categories contributed a significant portion of total revenue.
+
+**Recommendation**
+
+Protect market share in top-performing categories while identifying emerging growth categories.
+
+---
+
+### Operations & Shipping
+
+**Insight**
+
+54.83% of orders were exposed to late delivery risk.
+
+**Recommendation**
+
+Prioritize logistics optimization and shipping process improvements.
+
+**Insight**
+
+Standard Class shipping handled the highest order volume and late-order count.
+
+**Recommendation**
+
+Improve carrier performance and operational monitoring for Standard Class shipments.
+
+**Insight**
+
+Delivery fulfillment rate remains below optimal levels.
+
+**Recommendation**
+
+Strengthen order tracking, inventory planning, and fulfillment processes.
 
   ---
 
@@ -403,9 +587,10 @@ SupplyChainAnalytics/
 │   └── AB_Testing.xlsx
 │
 ├── Dashboard Screenshots/
+│   ├── Home Page.png
 │   ├── Executive Overview.png
-│   ├── Customer Analytics.png
-│   ├── Product Analytics.png
+│   ├── Customer Analysis.png
+│   ├── Product Analysis.png
 │   └── Operations & Shipping.png
 │
 ├── Supply Chain & Operational Intelligence Platform.pbix
